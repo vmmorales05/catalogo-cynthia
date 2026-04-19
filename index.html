@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo Cynthia — Carteras de Lujo</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8d08a;
+    --dark: #100e0c;
+    --dark2: #1c1915;
+    --dark3: #252018;
+    --cream: #f5f0e8;
+    --cream2: #ede7da;
+    --text: #2a2318;
+    --wa-green: #25d366;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--dark);
+    color: var(--cream);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 60px 20px;
+    background: linear-gradient(160deg, #100e0c 0%, #1e1a12 50%, #100e0c 100%);
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,168,76,0.08) 0%, transparent 70%);
+  }
+  .cover-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--gold));
+    margin: 0 auto 32px;
+  }
+  .cover-eyebrow {
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+  .cover-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 10vw, 96px);
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: -1px;
+    color: var(--cream);
+    margin-bottom: 16px;
+  }
+  .cover-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .cover-sub {
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.5);
+    margin-bottom: 48px;
+  }
+  .cover-divider {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 0 auto 32px;
+  }
+  .cover-brands {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    opacity: 0.5;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .cover-brands span { color: var(--gold-light); }
+  .cover-brands i { color: rgba(255,255,255,0.2); font-style: normal; }
+  .cover-scroll {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+  .cover-scroll::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
+
+  /* ── BRAND SECTION HEADER ── */
+  .brand-section {
+    padding: 80px 0 40px;
+  }
+  .brand-header {
+    text-align: center;
+    padding: 0 20px 60px;
+    position: relative;
+  }
+  .brand-header::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 1px;
+    background: var(--gold);
+    margin: 24px auto 0;
+  }
+  .brand-label {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 8vw, 72px);
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.0;
+  }
+  .brand-name em { font-style: italic; color: var(--gold-light); }
+  .brand-cat {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.4);
+    margin-top: 8px;
+  }
+
+  /* ── PRODUCT GRID ── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2px;
+    padding: 0 2px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* ── PRODUCT CARD ── */
+  .card {
+    background: var(--dark2);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .card:hover .card-img img { transform: scale(1.04); }
+  .card-img {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: var(--dark3);
+  }
+  .card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    display: block;
+  }
+  .card-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: var(--gold);
+    color: var(--dark);
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    font-weight: 500;
+  }
+  .card-body {
+    padding: 24px 20px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+  .card-brand {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--cream);
+    line-height: 1.2;
+  }
+  .card-detail {
+    font-size: 11px;
+    color: rgba(245,240,232,0.45);
+    letter-spacing: 1px;
+  }
+  .card-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .btn {
+    display: block;
+    text-align: center;
+    padding: 11px 8px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+  }
+  .btn-price {
+    background: transparent;
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold-light);
+  }
+  .btn-price:hover {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.1);
+    color: var(--gold);
+  }
+  .btn-buy {
+    background: var(--wa-green);
+    color: #fff;
+    position: relative;
+  }
+  .btn-buy:hover { background: #1da851; }
+  .btn-buy::before {
+    content: '✦ ';
+    font-size: 8px;
+  }
+
+  /* ── CATEGORY DIVIDER ── */
+  .cat-divider {
+    text-align: center;
+    padding: 48px 20px 24px;
+  }
+  .cat-divider span {
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(201,168,76,0.5);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 6px 18px;
+  }
+
+  /* ── MORE MODELS BTN ── */
+  .more-btn-wrap {
+    text-align: center;
+    padding: 48px 20px 32px;
+  }
+  .more-btn {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 14px 40px;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    background: transparent;
+    position: relative;
+    transition: all 0.25s ease;
+    overflow: hidden;
+  }
+  .more-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+    z-index: 0;
+  }
+  .more-btn:hover::before { transform: scaleX(1); }
+  .more-btn:hover { color: var(--dark); }
+  .more-btn span { position: relative; z-index: 1; }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding: 80px 20px 60px;
+    border-top: 1px solid rgba(201,168,76,0.15);
+    margin-top: 80px;
+  }
+  .footer-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+  .footer-sub {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .footer-wa {
+    display: inline-block;
+    background: var(--wa-green);
+    color: #fff;
+    padding: 14px 32px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  .footer-wa:hover { background: #1da851; }
+  .footer-copy {
+    margin-top: 40px;
+    font-size: 10px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 2px;
+  }
+
+  /* ── TWEAKS PANEL ── */
+  #tweaks-panel {
+    display: none;
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 20px;
+    width: 280px;
+    z-index: 9999;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+  }
+  #tweaks-panel h3 {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    padding-bottom: 10px;
+  }
+  #tweaks-panel label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 6px;
+  }
+  #tweaks-panel input {
+    width: 100%;
+    background: var(--dark3);
+    border: 1px solid rgba(201,168,76,0.2);
+    color: var(--cream);
+    padding: 8px 10px;
+    font-size: 12px;
+    font-family: monospace;
+    margin-bottom: 12px;
+  }
+  #tweaks-panel input:focus { outline: 1px solid var(--gold); }
+  #tweaks-apply {
+    width: 100%;
+    background: var(--gold);
+    color: var(--dark);
+    border: none;
+    padding: 10px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  #tweaks-apply:hover { background: var(--gold-light); }
+  #tweaks-note { font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 10px; line-height: 1.5; }
+
+  @media (max-width: 600px) {
+    .grid { grid-template-columns: repeat(2, 1fr); gap: 1px; padding: 0 1px; }
+    .card-body { padding: 16px 12px 14px; }
+    .card-name { font-size: 16px; }
+    .card-actions { gap: 6px; }
+    .btn { padding: 9px 4px; font-size: 9px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="cover-line"></div>
+  <p class="cover-eyebrow">Colección Exclusiva · 2026</p>
+  <h1 class="cover-title"><em>Cynthia</em><br>Fashion</h1>
+  <p class="cover-sub">Carteras de Diseñador · Edición Limitada</p>
+  <div class="cover-divider"></div>
+  <div class="cover-brands">
+    <span>Michael Kors</span><i>·</i>
+    <span>Coach</span><i>·</i>
+    <span>Louis Vuitton</span><i>·</i>
+    <span>Carolina Herrera</span><i>·</i>
+    <span>Guess</span>
+  </div>
+  <div class="cover-scroll">Explorar</div>
+
+</section>
+
+<!-- ═══════════════════════════════════════
+     MICHAEL KORS
+════════════════════════════════════════ -->
+<section class="brand-section" id="mk">
+  <div class="brand-header">
+    <p class="brand-label">Colección</p>
+    <h2 class="brand-name">Michael <em>Kors</em></h2>
+    <p class="brand-cat">Satchels · Totes · Crossbody</p>
+  </div>
+
+  <div class="cat-divider"><span>Mini Satchels · 27×20 cm</span></div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/96ff9e0a-7171-43d9-917f-481720b2b882.JPG" alt="MK Satchel Marrón" loading="lazy">
+      </div>
+      <div class="card-badge">27×20 cm</div>
+      <div class="card-body">
+        <p class="card-brand">Michael Kors</p>
+        <p class="card-name">Satchel Monogram Marrón</p>
+        <p class="card-detail">Monograma MK · Cadena dorada · Correa incluida</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: MK Satchel Monogram Marrón 27×20cm', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('MK Satchel Monogram Marrón 27×20cm', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/ef55c954-5d63-4898-b05a-d4e236d4298e.JPG" alt="MK Satchel Vainilla" loading="lazy">
+      </div>
+      <div class="card-badge">27×20 cm</div>
+      <div class="card-body">
+        <p class="card-brand">Michael Kors</p>
+        <p class="card-name">Satchel Monogram Vainilla</p>
+        <p class="card-detail">Monograma MK · Cadena dorada · Correa incluida</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: MK Satchel Monogram Vainilla 27×20cm', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('MK Satchel Monogram Vainilla 27×20cm', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/5f4df0ea-bfc7-4c3b-9028-41eeb6cdda8c.JPG" alt="MK Satchel Negro" loading="lazy">
+      </div>
+      <div class="card-badge">27×20 cm</div>
+      <div class="card-body">
+        <p class="card-brand">Michael Kors</p>
+        <p class="card-name">Satchel Monogram Negro</p>
+        <p class="card-detail">Monograma MK · Cadena dorada · Correa incluida</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: MK Satchel Monogram Negro 27×20cm', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('MK Satchel Monogram Negro 27×20cm', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="cat-divider"><span>Satchels Medianas</span></div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/02479590-e283-423f-aad7-5e3d65b7b48f.JPG" alt="MK Satchel Rosa" loading="lazy">
+      </div>
+      <div class="card-body">
+        <p class="card-brand">Michael Kors</p>
+        <p class="card-name">Satchel Vainilla & Rosa</p>
+        <p class="card-detail">Monograma MK · Herrajes dorados · Con correa</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: MK Satchel Vainilla Rosa', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('MK Satchel Vainilla Rosa', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/0a229a7a-fbdb-4cff-9015-e50fea3cde37.JPG" alt="MK Satchel Blanco Negro" loading="lazy">
+      </div>
+      <div class="card-body">
+        <p class="card-brand">Michael Kors</p>
+        <p class="card-name">Satchel Blanco & Negro</p>
+        <p class="card-detail">Monograma MK · Herrajes dorados · Con correa</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: MK Satchel Blanco Negro', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('MK Satchel Blanco Negro', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/4eaba99b-49ff-44b9-b310-91daceb8999f.JPG" alt="MK Satchel Marrón Medium" loading="lazy">
+      </div>
+      <div class="card-body">
+        <p class="card-brand">Michael Kors</p>
+        <p class="card-name">Satchel Monogram Café</p>
+        <p class="card-detail">Monograma MK · Colgante MK · Con correa</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: MK Satchel Monogram Café Medium', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('MK Satchel Monogram Café Medium', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/914eedf5-2aaf-4e2a-a413-275d48debc95.JPG" alt="MK Satchel Vainilla Camel" loading="lazy">
+      </div>
+      <div class="card-body">
+        <p class="card-brand">Michael Kors</p>
+        <p class="card-name">Satchel Vainilla & Camel</p>
+        <p class="card-detail">Monograma MK · Herrajes dorados · Con correa</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: MK Satchel Vainilla Camel', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('MK Satchel Vainilla Camel', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="cat-divider"><span>Totes Grandes · 36–41 cm</span></div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/82f547c0-a293-4773-9396-7d05ebcb496b.JPG" alt="MK Tote Marrón Logo" loading="lazy">
+      </div>
+      <div class="card-body">
+        <p class="card-brand">Michael Kors</p>
+        <p class="card-name">Tote Signature Marrón</p>
+        <p class="card-detail">Logo estampado · Correa larga · Camel trim</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: MK Tote Signature Marrón', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('MK Tote Signature Marrón', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/f69aafed-f600-4869-b674-06cbeeaaf858.JPG" alt="MK Tote Gris 36x28" loading="lazy">
+      </div>
+      <div class="card-badge">36×28 cm</div>
+      <div class="card-body">
+        <p class="card-brand">Michael Kors</p>
+        <p class="card-name">Tote Mirella Gris Perla</p>
+        <p class="card-detail">36×28 cm · Logo estampado · Correa doble</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: MK Tote Mirella Gris Perla 36×28cm', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('MK Tote Mirella Gris Perla 36×28cm', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/9c033dd0-45b0-44eb-a471-1838d727550d.JPG" alt="MK Tote Rosa 36x28" loading="lazy">
+      </div>
+      <div class="card-badge">36×28 cm</div>
+      <div class="card-body">
+        <p class="card-brand">Michael Kors</p>
+        <p class="card-name">Tote Mirella Rosa</p>
+        <p class="card-detail">36×28 cm · Logo estampado · Rosa pastel</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: MK Tote Mirella Rosa 36×28cm', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('MK Tote Mirella Rosa 36×28cm', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/6cf2cb9e-9dd5-4cdf-ac88-5611e9e6ad01.JPG" alt="MK Tote Marrón Grande" loading="lazy">
+      </div>
+      <div class="card-body">
+        <p class="card-brand">Michael Kors</p>
+        <p class="card-name">Tote Marrón & Camel XL</p>
+        <p class="card-detail">Monograma MK · Correa ancha estampada</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: MK Tote Marrón Camel XL', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('MK Tote Marrón Camel XL', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/71a1f8b0-c44d-4cf1-8c5c-0074ee304c89.JPG" alt="MK Tote Negro 41x27" loading="lazy">
+      </div>
+      <div class="card-badge">41×27 cm</div>
+      <div class="card-body">
+        <p class="card-brand">Michael Kors</p>
+        <p class="card-name">Tote Logo Negro</p>
+        <p class="card-detail">41×27 cm · Monograma MK · Correa ancha</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: MK Tote Logo Negro 41×27cm', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('MK Tote Logo Negro 41×27cm', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/09a068a9-37bf-4036-8b2e-76d874686873.JPG" alt="MK Tote Vainilla Rosa 41x27" loading="lazy">
+      </div>
+      <div class="card-badge">41×27 cm</div>
+      <div class="card-body">
+        <p class="card-brand">Michael Kors</p>
+        <p class="card-name">Tote Vainilla & Rosa</p>
+        <p class="card-detail">41×27 cm · Monograma MK · Correa rosa</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: MK Tote Vainilla Rosa 41×27cm', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('MK Tote Vainilla Rosa 41×27cm', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="more-btn-wrap">
+    <a class="more-btn" href="#" onclick="openWA('más modelos de Michael Kors', 'comprar'); return false;">
+      <span>✦ Solicitar más modelos</span>
+    </a>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════
+     COACH
+════════════════════════════════════════ -->
+<section class="brand-section" id="coach">
+  <div class="brand-header">
+    <p class="brand-label">Colección</p>
+    <h2 class="brand-name"><em>Coach</em></h2>
+    <p class="brand-cat">Totes · Buckets · Mini Satchels · Est. 1941</p>
+  </div>
+
+  <div class="cat-divider"><span>Totes Coach</span></div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/a961ac3a-78a5-4ae0-9fec-43a3be7bc348.JPG" alt="Coach Tote Beige Rosa" loading="lazy">
+      </div>
+      <div class="card-badge">44×28 cm</div>
+      <div class="card-body">
+        <p class="card-brand">Coach</p>
+        <p class="card-name">Tote Signature Beige & Rosa</p>
+        <p class="card-detail">44×28 cm · Firma C · Cuero rosa · Tags incluidos</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: Coach Tote Signature Beige Rosa 44×28cm', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('Coach Tote Signature Beige Rosa 44×28cm', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/f92b44c4-a625-46a5-a1df-8880e79a1f29.JPG" alt="Coach Tote Stripe Lips" loading="lazy">
+      </div>
+      <div class="card-badge">Ref. 0020</div>
+      <div class="card-body">
+        <p class="card-brand">Coach</p>
+        <p class="card-name">Tote Stripe + Pouch Lips</p>
+        <p class="card-detail">Ref 0020 · Incluye clutch estampado labios</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: Coach Tote Stripe Ref 0020', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('Coach Tote Stripe Ref 0020', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/1fd5f941-36ec-42e8-b0c1-415d3bd374f8.JPG" alt="Coach Tote Blanco Collegiate" loading="lazy">
+      </div>
+      <div class="card-badge">41×26 cm</div>
+      <div class="card-body">
+        <p class="card-brand">Coach</p>
+        <p class="card-name">Tote Collegiate Blanco</p>
+        <p class="card-detail">41×26 cm · Logo varsity · Asas negras</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: Coach Tote Collegiate Blanco 41×26cm', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('Coach Tote Collegiate Blanco 41×26cm', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/97fbac04-2239-48fb-b2df-59ded53f52a9.JPG" alt="Coach Tote Mickey" loading="lazy">
+      </div>
+      <div class="card-badge">41×26 cm</div>
+      <div class="card-body">
+        <p class="card-brand">Coach × Disney</p>
+        <p class="card-name">Tote Mickey & Minnie</p>
+        <p class="card-detail">41×26 cm · Edición especial · Incluye pouch</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: Coach Tote Mickey Minnie 41×26cm', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('Coach Tote Mickey Minnie 41×26cm', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="cat-divider"><span>Buckets Coach</span></div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/fa48a97a-b64b-443e-8c22-25ce92d51c0a.JPG" alt="Coach Bucket Camel Set" loading="lazy">
+      </div>
+      <div class="card-body">
+        <p class="card-brand">Coach</p>
+        <p class="card-name">Bucket Signature Camel Set</p>
+        <p class="card-detail">Incluye monedero · Firma C · Herrajes dorados</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: Coach Bucket Signature Camel Set', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('Coach Bucket Signature Camel Set', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/f8e28bdb-261d-4dad-9480-52f203dd87f0.JPG" alt="Coach Bucket 22x23" loading="lazy">
+      </div>
+      <div class="card-badge">22×23 cm</div>
+      <div class="card-body">
+        <p class="card-brand">Coach</p>
+        <p class="card-name">Bucket Signature Tan</p>
+        <p class="card-detail">22×23 cm · Incluye monedero · Dorado</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: Coach Bucket Signature Tan 22×23cm', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('Coach Bucket Signature Tan 22×23cm', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/5301f50b-1772-4b03-800b-43c7de36368f.JPG" alt="Coach Bucket Blanco" loading="lazy">
+      </div>
+      <div class="card-body">
+        <p class="card-brand">Coach</p>
+        <p class="card-name">Bucket Signature Blanco</p>
+        <p class="card-detail">Firma C · Asas blancas · Incluye monedero</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: Coach Bucket Signature Blanco', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('Coach Bucket Signature Blanco', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="cat-divider"><span>Mini Satchels Coach</span></div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/030eff25-00b2-4ac3-a66d-443008a3eb9f.JPG" alt="Coach Mini Satchel Beige" loading="lazy">
+      </div>
+      <div class="card-body">
+        <p class="card-brand">Coach</p>
+        <p class="card-name">Mini Satchel Beige Floral</p>
+        <p class="card-detail">Dije floral · Firma C · Cuero camel</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: Coach Mini Satchel Beige Floral', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('Coach Mini Satchel Beige Floral', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/f9a14b71-52c0-4478-af36-fb59cb67a69f.JPG" alt="Coach Mini Satchel 25x15" loading="lazy">
+      </div>
+      <div class="card-badge">25×15 cm</div>
+      <div class="card-body">
+        <p class="card-brand">Coach</p>
+        <p class="card-name">Mini Satchel Signature Camel</p>
+        <p class="card-detail">25×15 cm · Firma C · Herrajes dorados</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: Coach Mini Satchel Signature Camel 25×15cm', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('Coach Mini Satchel Signature Camel 25×15cm', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/6e830bba-9a75-45d1-8aa7-21be15dd709a.JPG" alt="Coach Mini Rosa" loading="lazy">
+      </div>
+      <div class="card-body">
+        <p class="card-brand">Coach</p>
+        <p class="card-name">Mini Satchel Rosa</p>
+        <p class="card-detail">Cuero liso · Dije floral · Correa larga</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: Coach Mini Satchel Rosa', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('Coach Mini Satchel Rosa', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/04a24c6a-5384-4066-97a6-6d2ac7bc5a2c.JPG" alt="Coach Mini Marrón" loading="lazy">
+      </div>
+      <div class="card-body">
+        <p class="card-brand">Coach</p>
+        <p class="card-name">Mini Satchel Marrón</p>
+        <p class="card-detail">Signature C oscuro · Herrajes dorados</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: Coach Mini Satchel Marrón', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('Coach Mini Satchel Marrón', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/3d2981c4-1b31-4747-826e-131e6cf00c86.JPG" alt="Coach Mini Negro" loading="lazy">
+      </div>
+      <div class="card-body">
+        <p class="card-brand">Coach</p>
+        <p class="card-name">Mini Satchel Signature Negro</p>
+        <p class="card-detail">Signature C · Negro elegante · Lifestyle</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: Coach Mini Satchel Signature Negro', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('Coach Mini Satchel Signature Negro', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="more-btn-wrap">
+    <a class="more-btn" href="#" onclick="openWA('más modelos de Louis Vuitton', 'comprar'); return false;">
+      <span>✦ Solicitar más modelos</span>
+    </a>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════
+     LOUIS VUITTON
+════════════════════════════════════════ -->
+<section class="brand-section" id="lv">
+  <div class="brand-header">
+    <p class="brand-label">Colección</p>
+    <h2 class="brand-name">Louis <em>Vuitton</em></h2>
+    <p class="brand-cat">Neverfull · Speedy · Bolsos de cuero</p>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/fc3e6d21-7b7e-4d12-90d9-bee810b80c2d.JPG" alt="LV Damier 45x31" loading="lazy">
+      </div>
+      <div class="card-badge">45×31 cm</div>
+      <div class="card-body">
+        <p class="card-brand">Louis Vuitton</p>
+        <p class="card-name">Tote Damier Ebene + Cartera</p>
+        <p class="card-detail">45×31 cm · Incluye billetera · Damier clásico</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: LV Tote Damier Ebene 45×31cm + cartera', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('LV Tote Damier Ebene 45×31cm + cartera', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/c7f1f8f0-6d98-457e-8148-57f1472da471.JPG" alt="LV Cuero Liso Camel" loading="lazy">
+      </div>
+      <div class="card-body">
+        <p class="card-brand">Louis Vuitton</p>
+        <p class="card-name">Satchel Cuero Liso Camel</p>
+        <p class="card-detail">Cuero granulado · Logo LV dorado · Correa larga</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: LV Satchel Cuero Liso Camel', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('LV Satchel Cuero Liso Camel', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/40c5f74d-fef9-474e-b3fe-674f63ec4e43.JPG" alt="LV Neverfull Monogram" loading="lazy">
+      </div>
+      <div class="card-body">
+        <p class="card-brand">Louis Vuitton</p>
+        <p class="card-name">Neverfull Monogram</p>
+        <p class="card-detail">Monograma LV · Interior rojo · Clásico atemporal</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: LV Neverfull Monogram', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('LV Neverfull Monogram', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/1191f8e6-60aa-4a5f-9e6e-2c0ffa222d29.JPG" alt="LV Speedy 33x22" loading="lazy">
+      </div>
+      <div class="card-badge">33×22 cm</div>
+      <div class="card-body">
+        <p class="card-brand">Louis Vuitton</p>
+        <p class="card-name">Speedy Monogram Café</p>
+        <p class="card-detail">33×22 cm · Monograma LV · Asas cuero y correa</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: LV Speedy Monogram Café 33×22cm', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('LV Speedy Monogram Café 33×22cm', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="more-btn-wrap">
+    <a class="more-btn" href="#" onclick="openWA('más modelos de Carolina Herrera', 'comprar'); return false;">
+      <span>✦ Solicitar más modelos</span>
+    </a>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════
+     CAROLINA HERRERA
+════════════════════════════════════════ -->
+<section class="brand-section" id="ch">
+  <div class="brand-header">
+    <p class="brand-label">Colección</p>
+    <h2 class="brand-name">Carolina <em>Herrera</em></h2>
+    <p class="brand-cat">Totes Icónicos · CH Monogram</p>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/4c3d38d3-aeaa-49a2-927f-514d9cbf543a.JPG" alt="CH Tote Marrón 46x29" loading="lazy">
+      </div>
+      <div class="card-badge">46×29 cm</div>
+      <div class="card-body">
+        <p class="card-brand">Carolina Herrera</p>
+        <p class="card-name">Tote Monogram Marrón</p>
+        <p class="card-detail">46×29 cm · Dije CH dorado · Cuero chocolate</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: CH Tote Monogram Marrón 46×29cm', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('CH Tote Monogram Marrón 46×29cm', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/4349e125-5545-4382-b88f-590df6dca666.JPG" alt="CH Tote Rojo" loading="lazy">
+      </div>
+      <div class="card-body">
+        <p class="card-brand">Carolina Herrera</p>
+        <p class="card-name">Tote Monogram Rojo</p>
+        <p class="card-detail">Monograma CH · Cuero rojo · Dije CH dorado</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: CH Tote Monogram Rojo', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('CH Tote Monogram Rojo', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/12ad307a-89a6-4e25-8cb8-0941e16128cb.JPG" alt="CH Tote Negro Lifestyle" loading="lazy">
+      </div>
+      <div class="card-body">
+        <p class="card-brand">Carolina Herrera</p>
+        <p class="card-name">Tote Cuero Negro</p>
+        <p class="card-detail">Cuero negro · Grabado CH · Candado dorado</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: CH Tote Cuero Negro', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('CH Tote Cuero Negro', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="more-btn-wrap">
+    <a class="more-btn" href="#" onclick="openWA('más modelos de Guess', 'comprar'); return false;">
+      <span>✦ Solicitar más modelos</span>
+    </a>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════
+     GUESS
+════════════════════════════════════════ -->
+<section class="brand-section" id="guess">
+  <div class="brand-header">
+    <p class="brand-label">Colección</p>
+    <h2 class="brand-name"><em>Guess</em></h2>
+    <p class="brand-cat">Satchels · Totes Signature</p>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/972c19e6-b61a-43e1-a44b-4e915f4680f0.JPG" alt="Guess Satchel Camel" loading="lazy">
+      </div>
+      <div class="card-body">
+        <p class="card-brand">Guess</p>
+        <p class="card-name">Satchel Camel + Monedero</p>
+        <p class="card-detail">Logo G · Incluye monedero redondo · Correa ancha</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: Guess Satchel Camel con monedero', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('Guess Satchel Camel con monedero', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">
+        <img src="uploads/3f8c3bbf-a803-4085-9c31-0e5a82a0da8e.JPG" alt="Guess Satchel Negro" loading="lazy">
+      </div>
+      <div class="card-body">
+        <p class="card-brand">Guess</p>
+        <p class="card-name">Satchel Negro Logo</p>
+        <p class="card-detail">Cuero negro · Logo G repujado · Herrajes dorados</p>
+        <div class="card-actions">
+          <a class="btn btn-price" href="#" onclick="openWA('Ver precio: Guess Satchel Negro Logo', 'precio'); return false;">Ver Precio</a>
+          <a class="btn btn-buy"   href="#" onclick="openWA('Guess Satchel Negro Logo', 'comprar'); return false;">Comprar</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="more-btn-wrap">
+    <a class="more-btn" href="#" onclick="openWA('más modelos de Guess', 'comprar'); return false;">
+      <span>✦ Solicitar más modelos</span>
+    </a>
+  </div>
+
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <p class="footer-title">¿Te gustó alguna?</p>
+  <p class="footer-sub">Escríbenos por WhatsApp · Atención personalizada</p>
+  <a class="footer-wa" id="footer-wa-btn" href="#" onclick="openWA('el catálogo de carteras', 'precio'); return false;">
+    ✦ Chatear con Cynthia
+  </a>
+  <p class="footer-copy">CATÁLOGO CYNTHIA FASHION · 2026 · Precios sujetos a disponibilidad</p>
+</footer>
+
+<!-- TWEAKS PANEL -->
+<div id="tweaks-panel">
+  <h3>Tweaks</h3>
+  <label>Número WhatsApp (con código de país)</label>
+  <input type="text" id="tweak-wa" placeholder="Ej: 573001234567" value="593993740516">
+  <label>Nombre de la vendedora</label>
+  <input type="text" id="tweak-name" placeholder="Ej: Cynthia" value="Cynthia">
+  <button id="tweaks-apply">Aplicar cambios</button>
+  <p id="tweaks-note">El número debe incluir código de país sin + ni espacios. Ej: Colombia = 57 + número.</p>
+</div>
+
+<script>
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "waNumber": "593993740516",
+    "sellerName": "Cynthia"
+  }/*EDITMODE-END*/;
+
+  let config = Object.assign({}, TWEAK_DEFAULTS);
+
+  function openWA(product, action) {
+    let msg;
+    if (action === 'precio') {
+      msg = encodeURIComponent(`Hola! 👜 ¿Cuál es el precio de: *${product}*?`);
+    } else {
+      msg = encodeURIComponent(`Hola! Quiero comprar: *${product}* 🛍️`);
+    }
+    window.open(`https://wa.me/${config.waNumber}?text=${msg}`, '_blank');
+  }
+
+  // Tweaks wiring
+  window.addEventListener('message', e => {
+    if (e.data?.type === '__activate_edit_mode') {
+      document.getElementById('tweaks-panel').style.display = 'block';
+      document.getElementById('tweak-wa').value = config.waNumber;
+      document.getElementById('tweak-name').value = config.sellerName;
+    }
+    if (e.data?.type === '__deactivate_edit_mode') {
+      document.getElementById('tweaks-panel').style.display = 'none';
+    }
+  });
+
+  document.getElementById('tweaks-apply').addEventListener('click', () => {
+    config.waNumber = document.getElementById('tweak-wa').value.trim();
+    config.sellerName = document.getElementById('tweak-name').value.trim();
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: {
+      waNumber: config.waNumber,
+      sellerName: config.sellerName
+    }}, '*');
+    // Show confirmation
+    const btn = document.getElementById('tweaks-apply');
+    btn.textContent = '✓ Aplicado';
+    setTimeout(() => btn.textContent = 'Aplicar cambios', 1500);
+  });
+
+  window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+</script>
+
+</body>
+</html>
